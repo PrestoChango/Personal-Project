@@ -11,7 +11,13 @@ angular.module('maps')
       })
     }
 
+
+
     $scope.initMap = function() {
+      $scope.icon = {
+        url: "../../../assets/img/supercharger.png",
+        scaledSize: new google.maps.Size(35, 35)
+      };
       $scope.mapDiv = document.getElementById('map');
       $scope.map = new google.maps.Map($scope.mapDiv, {
           center: {lat: 39.8333333, lng: -98.585522},
@@ -23,13 +29,13 @@ angular.module('maps')
         $scope.marker = new google.maps.Marker({
           position: $scope.latLng,
           map: $scope.map,
-          title: $scope.location.city
+          icon: $scope.icon
         });
         $scope.marker.info = $scope.location[i];
         $scope.marker.addListener('click', function() {
           $scope.station = this.info;
           // console.log(($scope.station.city));
-          console.log(this.info.city);
+          console.log(this.info);
           $scope.$apply();
         })
       }

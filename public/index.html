@@ -16,7 +16,28 @@
 
     <div class="info-pane">
       <div class="info-card">
-        Charger: {{station.city}}
+      {{station.city}} {{station.state}} Supercharger
+    </br>
+    <img src="assets/img/supercharger.png"/>Supercharger Only
+    </br>
+    </br>
+    {{station.street_address}}
+    </br>
+    {{station.supercharger}} {{station.zip}}
+    </br>
+    <!-- <a href="https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination={{station.gps[0]}},{{station.gps[1]}}&key=AIzaSyDaz79q-glRlhJkPKScG9xGrnhKNjURUAU">Driving Directions</a> -->
+    <a target="_blank" href="https://maps.google.com/maps?daddr={{station.gps[0]}},{{station.gps[1]}}">Driving Directions</a>
+
+    </br>
+    </br>
+    Roadside Assistance: (877) 793-3752
+    </br>
+    </br>
+    Charging
+    </br>
+    {{station.stalls}} Superchargers, available 24/7
+     </br>
+     </br>
       </div>
     </div>
 

@@ -20,8 +20,9 @@
 
 .info-card {
   position: relative;
-  margin: 5px;
-  height: 300px;
+  margin-top: 5px;
+  margin-left: 5px;
+  min-height: 380px;
   width: 390px;
   background-color: gray;
 }
