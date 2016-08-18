@@ -1,1 +1,1 @@
-angular.module('maps', []);
+angular.module('app', ['ui.router']);

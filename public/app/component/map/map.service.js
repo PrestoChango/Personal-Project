@@ -1,4 +1,4 @@
-angular.module('maps')
+angular.module('app')
   .service('mapsSrvc', function ($http) {
 
     this.getAllLocations = function() {

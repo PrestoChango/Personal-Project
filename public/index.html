@@ -1,60 +1,37 @@
 <!DOCTYPE html>
-<html ng-app="maps">
+<html ng-app="app">
   <head>
-    <style>
-       #map {
-        width: 100%;
-        height: 700px;
-      }
-    </style>
     <link href="./assets/style/reset.css" rel="stylesheet">
     <link href="./assets/style/style.css" rel="stylesheet">
   </head>
 
-  <body ng-controller="mapsCtrl">
-    <div class="header">some text here</div>
+  <body>
 
-    <div class="info-pane">
-      <div class="info-card">
-      {{station.city}} {{station.state}} Supercharger
-    </br>
-    <img src="assets/img/supercharger.png"/>Supercharger Only
-    </br>
-    </br>
-    {{station.street_address}}
-    </br>
-    {{station.supercharger}} {{station.zip}}
-    </br>
-    <!-- <a href="https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination={{station.gps[0]}},{{station.gps[1]}}&key=AIzaSyDaz79q-glRlhJkPKScG9xGrnhKNjURUAU">Driving Directions</a> -->
-    <a target="_blank" href="https://maps.google.com/maps?daddr={{station.gps[0]}},{{station.gps[1]}}">Driving Directions</a>
-
-    </br>
-    </br>
-    Roadside Assistance: (877) 793-3752
-    </br>
-    </br>
-    Charging
-    </br>
-    {{station.stalls}} Superchargers, available 24/7
-     </br>
-     </br>
-      </div>
-    </div>
-
-    <div id="map" >
-    </div>
-    <!-- <div>
-      <ul ng-repeat="place in location">
-        <li>{{place.city}}</li>
-      </ul>
-    </div> -->
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaz79q-glRlhJkPKScG9xGrnhKNjURUAU"></script>
+  <main>
+    <ui-view></ui-view>
+  </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.js"></script>
+
+    <!-- Google Map Scripts -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaz79q-glRlhJkPKScG9xGrnhKNjURUAU&libraries=places"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaz79q-glRlhJkPKScG9xGrnhKNjURUAU&libraries=places"></script> -->
+
+    <script src="app/jquery.min.js"></script>
     <script type="text/javascript" src='app/app.js'></script>
     <script type="text/javascript" src='app/component/map/map.controller.js'></script>
     <script type="text/javascript" src='app/component/map/map.service.js'></script>
+    <script type="text/javascript" src='app/component/shop/shop.controller.js'></script>
+    <script type="text/javascript" src='app/component/shop/shop.service.js'></script>
+    <script type="text/javascript" src='app/component/routing/routes.js'></script>
+    <script type="text/javascript" src='app/component/directives/infopane.js'></script>
+    <script type="text/javascript" src='app/component/directives/header.js'></script>
+    <script type="text/javascript" src='app/component/directives/fixed_header.js'></script>
+    <script type="text/javascript" src='app/component/directives/shop_header.js'></script>
+    <script type="text/javascript" src='app/component/directives/shop_footer.js'></script>
+    <script type="text/javascript" src='app/component/design_studio/design.controller.js'></script>
+    <script type="text/javascript" src='app/component/design_studio/design.service.js'></script>
   </body>
 </html>

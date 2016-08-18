@@ -1,0 +1,29 @@
+
+    <div class="info-pane">
+      <div class="info-card">
+        <img class="close" src="assets/img/1470883483_cross.svg"/>
+      </br>
+      <ul>
+        <li class="charge-location">{{station.city}} {{station.state}} Supercharger</li>
+      </br>
+
+      <li class="service"><img class="info-card-img" src="assets/img/supercharger.png"/>Supercharger Only</li>
+      </br>
+      <li class="info-font">{{station.street_address}}</li>
+
+      <li class="info-font">{{station.supercharger}} {{station.zip}}</li>
+
+      <li><a class="directions" target="_blank" href="https://maps.google.com/maps?daddr={{station.gps[0]}},{{station.gps[1]}}">Driving Directions </a></li>
+      </br>
+
+      <li class="info-font">Roadside Assistance: (877) 793-3752</li>
+      </br>
+      <li>Charging</li>
+
+      <li class="info-font">{{station.stalls}} Superchargers, available 24/7</li>
+      </ul>
+      </div>
+      <div >
+        <a class="info-footer" href="https://www.tesla.com/findus/list/superchargers/United+States">View all Tesla locations</a>
+      </div>
+    </div>

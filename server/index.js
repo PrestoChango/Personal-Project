@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var massive = require('massive');
-var connectionString = 'postgres://postgres:NDitgmx3@localhost/tesla'
+var connectionString = 'postgres://postgres:thisisatest@localhost/tesla'
 
 
 var massiveInstance = massive.connectSync({connectionString: connectionString});
@@ -17,7 +17,9 @@ var chargers = require('./controllers/chargerCtrl.js');
 
 
 app.get('/chargers', chargers.getChargeLocations);
-
+app.get('/product', chargers.getAllProduct);
+app.get('/customize/:id', chargers.customizeCar);
+app.get('/changeWheel/:id', chargers.changeWheel);
 
 
 

@@ -1,43 +1,819 @@
+
 .header {
   position: absolute;
-  /*margin-top: 0px;*/
   height: 50px;
+  min-width: 1024px;
   width: 100%;
-  color: white;
-  opacity: .75;
-  background-color: #696969;
+  opacity: .6;
+  background-color: #161616;
   z-index: 1;
+  box-shadow: 0px 1px 1px #161616;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.fixed-header {
+  position: relative;
+  height: 50px;
+  min-width: 1024px;
+  max-width: 1440px;
+  width: 100%;
+  background-image: linear-gradient(to bottom,#454545 0%,#333 100%);
+  z-index: 1;
+  box-shadow: 0px 1px 1px #383838;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 13px;
+  width: 100px;
+  margin-right: 30px;
+}
+
+.header-links a {
+  color: white;
+  text-decoration: none;
+  font-family: Gotham Medium,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: normal;
+  margin-left: 7px;
+  margin-right: 7px;
+  font-weight: bolder;
+  font-size: 12px;
+}
+
+.right-nav {
+  margin-left: 10%;
+}
+
+.video-container {
+ position: fixed;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ z-index: -100;
+}
+
+.home-video {
+  background-color: black;
+  vertical-align: top;
+  width: 100%;
+  height: auto;
+  transform: translateY(-10%);
+  overflow: hidden;
+}
+
+#search-box {
+  height: 37px;
+  width: 320px;
+  position: absolute;
+  margin-top: 80px;
+  margin-left: 85px;
+  padding-left: 5px;
+  z-index: 1;
+  font-size: 18px;
+  border-width: 1px;
+  border-color: #fafafa;
+  border-style: outset;
+  box-shadow: 0px 2px 2px #b2b1ae;
+}
+
+#search-box:focus {
+  border-color: #FF0000;
+  border-style: solid;
+  outline: none;
+}
+
+#search-button {
+  background-image: url('../img/search.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #CC0000;
+  height: 41px;
+  width: 80px;
+  position: absolute;
+  margin-top: 80px;
+  margin-left: 405px;
+  z-index: 1;
+  border-style: none;
+  box-shadow: 0px 2px 2px #b2b1ae;
+}
+
+#search-button:active {
+  box-shadow: inset 0px 2px 2px #3f0000;
+}
+
 .info-pane {
   position: absolute;
   margin-left: 85px;
-  margin-top: 80px;
+  margin-top: 140px;
   width: 400px;
   min-height: 400px;
   background-color: white;
   z-index: 1;
+  display: none;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-color: #fafafa;
+  border-width: 2px;
+  box-shadow: 0px 2px 2px #b2b1ae;
 }
 
 .info-card {
+  font-family: 'Gotham A','Gotham B','Helvetica Neue',
+  Helvetica,Arial,sans-serif;
   position: relative;
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 22px;
   min-height: 380px;
-  width: 390px;
-  background-color: gray;
+  width: 375px;
 }
 
+.info-card-img {
+  width: 23px;
+  height: 30px;
+}
 #map {
   height: 100vh;
   width: 100vw;
 }
 
-/*body {
-  height: 100%;
+
+.close {
+float: right;
+margin-right: 5px;
+}
+
+.info-font {
+  color: #898989;
+}
+
+.charge-location {
+  font-size: 35px;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+  color: #898989;
+}
+.directions {
+  color: #CC0000;
+  text-decoration: none;
+  display: flex;
+}
+
+.directions:after {
+  content: "";
+   display: block;
+   margin-left: 5px;
+   background: url("../img/arrow.svg") no-repeat;
+   width: 18px;
+   height: 18px;
+}
+
+.info-footer {
+  width: 100%;
+  background-color: #eeeeee;
+  height: 39px;
+  display: flex;
+  color: #CC0000;
+  align-items: center;
+  padding-left: 9px;
+  text-decoration: none;
+}
+
+.info-footer:after {
+  content: "";
+   display: block;
+   margin-left: 5px;
+   background: url("../img/arrow.svg") no-repeat;
+   width: 18px;
+   height: 18px;
+}
+
+.shop-container {
+  padding-top: 44px;
+  width: 960px;
+  margin: auto;
+}
+
+.shop-header {
+  width: 100%;
+  margin-right: 20px;
+  margin-left: 20px;
+  display: inline;
+}
+
+
+.shop_logo {
+/*float: left;*/
+}
+
+.cart_header {
+display: flex;
+align-items: center;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #666666;
+text-align: right;
+font-weight: bold;
+}
+
+.top_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart {
+  margin-left: 9px;
+  background-color: #C90000;
+  color: white;
+  border-style: none;
+  font-size: 15px;
+  border-radius: 4px;
+  font-family: 'OstrichSansBlack', Helvetica, Arial, sans-serif;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  font-weight: bold;
+  line-height: 10px;
+
+}
+
+.cart:hover {
+  background-color: #333333;
+}
+
+.nav_bar {
+  color: #555555;
+}
+
+.nav_bar li:nth-child(-n+6):hover {
+  background-color: #C90000;
+  color: white;
+}
+
+.nav_bar li {
+  margin-left: -4px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  background-color: #EEEEEE;
+  display: inline;
+}
+
+
+#search_bar {
+  height: 25px;
+  margin-right: 25px;
+  border-color: #DDDDDD;
+  border-style: solid;
+  border-width: 1px;
+  background: url('../img/musica-searcher.svg') no-repeat;
+  background-position: 5% 50%;
+  padding-left: 22px;
+  width: 147px;
+  background-color: white;
+  outline: none;
+
+}
+
+.nav_search {
+  display: flex;
+  margin-top: 75px;
+  margin-bottom: 50px;
+}
+
+.shop_footer_top {
+  margin-top: 75px;
+  margin-bottom: 27px;
+  background-color: #EEEEEE;
+  width: 100%;
+  height: 248px;
+  display: flex;
+}
+
+.shop_footer_bottom {
+  background: url('../img/tesla-motors-flag3.jpg') no-repeat right bottom;
+  height: 110px;
+  margin-top: 55px;
+}
+
+.bottom {
+  background-color: #A60C0A;
+  height: 6px;
   width: 100%;
 }
 
-html {
-  height: 100%;
+.link {
+  text-decoration: none;
+  color: #CC0000;
+}
+
+.left_top {
+  padding-top: 26px;
+  margin-left: 18px;
+  width: 280px;
+}
+
+.footer_title {
+  font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+  color: #616161;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.left_top p {
+  color: #757171;
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.right_top {
+  padding-top: 26px;
+  margin-left: 63px;
+}
+
+.payment_options {
+  padding-top: 30px;
+  display: flex;
+}
+
+.paypal {
+  background: url('../img/cards.gif');
+  width: 50px;
+  height: 33px;
+}
+
+.visa {
+  background: url('../img/cards.gif') -50px 0 ;
+  width: 50px;
+  height: 33px;
+  margin-left: 9px;
+}
+
+.mastercard {
+  background: url('../img/cards.gif')  -100px 0 ;
+  width: 50px;
+  height: 33px;
+  margin-left: 9px;
+
+}
+
+.american_express {
+  background: url('../img/cards.gif')  -150px 0 ;
+  width: 50px;
+  height: 33px;
+  margin-left: 9px;
+
+}
+
+.discover {
+  background: url('../img/cards.gif')  -200px 0 ;
+  width: 50px;
+  height: 33px;
+  margin-left: 9px;
+
+}
+
+.right_top p {
+  color: #757171;
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.shop_landing_design {
+  font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+  font-size: 21px;
+  color: #333333;
+  font-weight: 600;
+  font-stretch: ultra-condensed;
+}
+
+.highlighted_product {
+  display: flex;
+  justify-content: space-between;
+}
+
+.highlighted_product img {
+  width: 135px;
+  height: auto;
+}
+
+.shop_home_graphic {
+  max-width: 100%;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #666666;
+}
+
+.car_container {
+  min-width: 1028px;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.top_shop {
+height: 500px;
+}
+
+.main_graphic {
+  background: url('../img/models/section-initial.jpg') no-repeat;
+  background-size: contain;
   width: 100%;
-}*/
+  height: 100%;
+
+}
+
+.main_graphic_container {
+  width: 100%;
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_graphic_nav {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin: auto;
+  font-size: 28px;
+  font-family: Gotham Light,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 25px;
+}
+
+.main_graphic_nav li{
+  margin-right: 15px;
+  font-size: 13px;
+  font-family: Gotham Light,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  display: -webkit-inline-box;
+}
+
+.main_graphic_nav ul{
+ margin-left: 480px;
+}
+
+.container {
+  padding-top: 80px;
+  padding-bottom: 55px;
+  text-align: center;
+
+}
+.container_intro {
+  width: 672px;
+  margin: auto;
+  text-align: center;
+  color: #666;
+  line-height: 19px;
+}
+
+.container_intro h1 {
+  font-size: 40px;
+  color: #000;
+  font-family: Gotham Light,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:100;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 60px;
+}
+
+.features h4 {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.features p {
+  color: #666;
+  line-height: 19px;
+}
+
+.lighting {
+  background: url('../img/models/adaptive-lights.png') no-repeat;
+  background-size: contain;
+}
+
+.adaptive_lighting {
+  width: 412px;
+}
+
+.feature {
+  width: 300px;
+  height: 180px;
+  margin: auto;
+}
+
+.hepa {
+  background: url('../img/models/hepa-filter.png') no-repeat;
+  background-size: contain;
+}
+
+.bio_defense {
+  width: 412px;
+}
+
+.cars {
+  max-width: 100%;
+  position: relative;
+  top: 0;
+  min-width: 1028px;
+  height: 100%;
+  z-index: -100;
+  /*transform: translateY(-10%);*/
+}
+
+.base-image {
+  position:relative;
+  min-width: 1028px;
+  max-width: 100%;
+}
+
+.a1 {
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  min-width: 1028px;
+  z-index: 0;
+}
+
+.custom_top_section {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: -73px;
+  z-index: 1;
+}
+
+.custom_t {
+  width: 340px;
+  height: 70px;
+}
+
+.mid {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.custom_top_left {
+  background: url('../img/design-shop/paint/colorbar.png') no-repeat 0px -70px;
+  background-size: 340px 630px;
+}
+
+.custom_top_mid {
+  background: url('../img/design-shop/paint/roof-wheel.jpg') no-repeat 0px -26px;
+  background-size: cover;
+}
+
+.custom_top_right {
+  background: url('../img/design-shop/paint/interior.jpg') no-repeat;
+  background-size: cover;
+}
+
+.custom_bar {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+.custom {
+  width: 340px;
+  height: 50px;
+  background-color: #F7F7F7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.car_colors {
+    margin: auto;
+    height: 170px;
+    background: rgba(247, 247, 247, .1);
+    z-index: 1;
+    margin-top: -174px;
+    width: 100%;
+    margin-bottom: 74px;
+    max-width: 1065px;
+}
+
+.fixed_size {
+  width: 80%;
+  margin: auto;
+}
+
+.pick_a_color {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.pick_a_color li {
+  margin-left: 10px;
+  width: 65px;
+  height: 78px;
+  border-color: #676767;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.pick_a_color > li:nth-child(1) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat;
+  background-size: 650px 76px;
+}
+
+.pick_a_color > li:nth-child(2) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -65px 0px;
+  background-size: 650px 76px;
+}
+
+.pick_a_color > li:nth-child(3) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -195px 0px;
+  background-size: 650px 76px;
+}
+
+.pick_a_color >  li:nth-child(4) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -457px 0px;
+  background-size: 650px 76px;
+}
+
+.pick_a_color >  li:nth-child(5) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -325px 0px;
+  background-size: 650px 76px;
+
+}
+
+.pick_a_color >  li:nth-child(6) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -262px 0px;
+  background-size: 650px 76px;
+}
+
+.pick_a_color > li:nth-child(7) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -130px 0px;
+  background-size: 650px 76px;
+}
+
+.pick_a_color > li:nth-child(8) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -521px 0px;
+  background-size: 650px 76px;
+}
+
+.pick_a_color > li:nth-child(9) {
+  background: url('../img/design-shop/paint/palette.png') no-repeat -587px 0px;
+  background-size: 650px 76px;
+}
+
+.close_customizer {
+  float: right;
+  margin: 10px;
+}
+
+.pick_your_style {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.pick_your_style li {
+  width: 110px;
+  height: 78px;
+  margin-left: 20px;
+}
+
+.pick_your_style > li:nth-child(1){
+  background: url('../img/design-shop/exterior/wheels.png') no-repeat -110px 0px;
+  background-size: 550px 78px;
+}
+
+.pick_your_style > li:nth-child(2){
+  background: url('../img/design-shop/exterior/wheels.png') no-repeat -220px 0px;
+  background-size: 550px 78px;
+}
+
+.pick_your_style > li:nth-child(3){
+  background: url('../img/design-shop/exterior/wheels.png') no-repeat -330px 0px;
+  background-size: 550px 78px;
+}
+
+.pick_your_style > li:nth-child(4){
+  background: url('../img/design-shop/exterior/wheels.png') no-repeat -440px 0px;
+  background-size: 550px 78px;
+}
+
+.under_text {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  width: 80%;
+  margin: auto;
+}
+.under_text h4 {
+  display: none;
+}
+
+.under_text > h4:nth-child(2){
+  display: inline;
+}
+
+.rims {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  width: 80%;
+  margin: auto;
+}
+
+.rims h4 {
+  display: none;
+}
+
+.rims > h4:nth-child(1){
+  display: inline;
+}
+
+.outline {
+  outline-style: solid;
+  outline-color: #0090FF;
+}
+
+.left_column {
+  width: 702px;
+  height: auto;
+  margin-right: 2%;
+}
+
+.right_column {
+  max-height: 500px;
+  width: 340px;
+  height: auto;
+  background-color: #F7F7F7;
+}
+
+.main_content {
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.options {
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #F7F7F7;
+  padding: 15px 0px 15px 0px;
+  align-items: center;
+}
+
+.options button {
+  font-size: 17px;
+  color: #FFF;
+  background-color: #464646;
+  border: none;
+  padding: 10px;
+}
+
+.options button:nth-child(1) {
+  margin: 0px 15px 0px 20px;
+}
+
+.pricing {
+  font-size: 20px;
+  color: white;
+  height: 60px;
+  background-color: #2C2C2C;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.select_performance {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;;
+}
+
+.select_performance div {
+  padding: 30px 0px 30px 0px;
+  background-color: #F7F7F7;
+  border-style: solid;
+  border-color: #dad2d2;
+  border-width: 1px;
+}
+
+.select_performance div img {
+  width: 163px;
+  height: 23px;
+}
