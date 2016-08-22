@@ -25,11 +25,16 @@
         <li ng-click="paint(8)"></li>
         <li ng-click="paint(9)"></li>
       </ul>
-      <div class="under_text"><h4>Solid Black</h4><h4>Solid White</h4>
-            <h4>Titanium Metallic $15 /mo.</h4><h4>Midnight Silver Metallic $15 /mo.</h4>
-            <h4>Obsidian Black Metallic $15 /mo.</h4><h4>Deep Blue Metallic $15 /mo.</h4>
-            <h4>Silver Metallic $15 /mo.</h4><h4>Pearl White Multi-Coat $23 /mo.</h4>
-            <h4>Red Multi-Coat $23 /mo.</h4>
+      <div class="under_text">
+        <h4>Solid Black</h4>
+        <h4>Solid White</h4>
+        <h4>Titanium Metallic $1,000</h4>
+        <h4>Midnight Silver Metallic $1,000</h4>
+        <h4>Obsidian Black Metallic $1,000</h4>
+        <h4>Deep Blue Metallic $1,000</h4>
+        <h4>Silver Metallic $1,000</h4>
+        <h4>Pearl White Multi-Coat $1,500</h4>
+        <h4>Red Multi-Coat $1,500</h4>
       </div>
     </div>
 
@@ -43,9 +48,9 @@
       </ul>
       <div class="rims">
         <h4>19" Silver Slipstream Wheels</h4>
-        <h4>19" Silver Cyclone Wheels $38 /mo.</h4>
-        <h4>21" Silver Turbine Wheels $68 /mo.</h4>
-        <h4>21" Grey Turbine Wheels $68 /mo.</h4>
+        <h4>19" Silver Cyclone Wheels $2,500</h4>
+        <h4>21" Silver Turbine Wheels $4,500</h4>
+        <h4>21" Grey Turbine Wheels $4,500</h4>
       </div>
     </div>
 
@@ -57,7 +62,7 @@
 
   <div class="custom_bar">
     <div class="custom" ng-click="showcolors=true; hidecontrols=true; showrims=false">Paint</div>
-    <div class="custom mid" ng-click="showrims=true; hidecontrols=true; showcolors=false">Roof & Wheels</div>
+    <div class="custom mid" ng-click="showrims=true; hidecontrols=true; showcolors=false">Wheels</div>
     <div class="custom">Interior</div>
   </div>
 
@@ -73,55 +78,69 @@
     </div>
 
     <div class="select_performance">
-      <div>
-          <img src="../assets/img/design-shop/options/60.png"/>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><img src="../assets/img/design-shop/options/75.png"/></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><img src="../assets/img/design-shop/options/90d.png"/></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><img src="../assets/img/design-shop/options/p90d.png"/></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-    </div>
 
+      <div class="outline" ng-click="changePerformance(1)">
+          <img src="../assets/img/design-shop/options/60.png"/>
+          <h1>60kWh Battery</h1>
+          <h2>Rear Wheel Drive</h2>
+          <hr>
+        <ul>
+          <li><span class="bold">210</span> miles range (EPA est.)</li>
+          <li><span class="bold">130</span> mph top speed</li>
+          <li><span class="bold">5.5</span> sec. 0-60 mph</li>
+          <li>Upgradeable to 75kWh at any time</li>
+        </ul>
+      </div>
+
+      <div ng-click="changePerformance(2)">
+          <img src="../assets/img/design-shop/options/75.png"/>
+          <h1>75 kWh Battery</h1>
+          <h2>Rear Wheel Drive</h2>
+          <hr>
+        <ul>
+          <li><span class="bold">249</span> miles range (EPA)</li>
+          <li><span class="bold">140</span> mph top speed</li>
+          <li><span class="bold">5.5</span> sec. 0-60mph</li>
+        </ul>
+      </div>
+
+      <div ng-click="changePerformance(3)">
+          <img src="../assets/img/design-shop/options/90d.png"/>
+          <h1>90 kWh Battery</h1>
+          <h2>All-Wheel Drive</h2>
+          <hr>
+        <ul>
+          <li><span class="bold">294</span> Miles Range (EPA)</li>
+          <li><span class="bold">15</span> mph top speed</li>
+          <li><span class="bold">4.2</span>sec. 0-60 mph</li>
+        </ul>
+      </div>
+
+      <div ng-click="changePerformance(4)">
+          <img src="../assets/img/design-shop/options/p90d.png"/>
+          <h3>90 kWh Performance</h3>
+          <h2>All-Wheel Drive</h2>
+          <hr>
+        <ul>
+          <li><span class="bold">270</span> miles range (EPA)</li>
+          <li><span class="bold">155</span> mph top speed</li>
+          <li><span class="bold">4.2</span> sec. 0-60 mph</li>
+          <li><span class="bold">2.8</span> sec. with Ludicrous Speed Upgrade</li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 
   <div class="right_column">
     <div class="pricing"> Cash </div>
+    <div class="total_cost">
+      <h3>${{total}}</h3>
+      <h2>Cost After Estimated Savings</h2>
+    </div>
+    <div class="order_footer"><a ng-click="passOrder()" ui-sref="order">Next</a></div>
   </div>
+
 </section>
+
+<br>

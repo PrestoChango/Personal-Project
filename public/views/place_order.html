@@ -1,0 +1,119 @@
+<section class="car_container">
+
+<fixed-header>
+</fixed-header>
+
+  <section class="order_main_content">
+    <div class="order_head">Order or Save Design</div>
+    <hr class="order_seperator">
+
+    <div class="gather_info">
+      <div class="customer_info">
+        <form class="form">
+          <div class="form_left">
+            <label class="label">FIRST NAME</label>
+            <input ng-model="cust.first" class="input" required>
+          </div>
+
+          <div>
+            <label class="label">LAST NAME</label>
+            <input ng-model="cust.last" class="input">
+          </div>
+
+          <div class="form_left">
+            <label class="label">EMAIL</label>
+            <input ng-model="cust.email" class="input" type="email">
+          </div>
+
+          <div>
+            <label class="label">CONFIRM EMAIL</label>
+            <input ng-model="cust.emailConf" class="input" type="email">
+          </div>
+
+          <div>
+            <label class="label">PHONE NUMBER</label>
+            <input ng-model="cust.phone" class="input">
+          </div>
+
+        </form>
+      </div>
+      <div class="questions">
+        <h1>Questions?</h1>
+        <p> We're here to help. Call us anytime. <br>
+          (888) 518-3752 | <a>Request a callback</a> </p>
+      </div>
+    </div>
+    <hr class="order_seperator">
+  </section>
+
+  <section class="order_main_content">
+    <h1>Saving your design is free.</h1>
+    <p>Placing your order requires a $2,500 order payment.</p>
+    <button class="save_design" ng-click="show()">Save design and
+    pay later</button>
+
+
+    <div class="address">
+      <h1>Where do you plan to register your car?</h1>
+      <p>This helps us plan your delivery.  You can add a second owner or choose to register to a company later.</p>
+
+      <form>
+        <label class="label buffer_top">ADDRESS LINE 1</label>
+        <input ng-model="cust.address1" class="input" id="address_input">
+        <label class="label">ADDRESS LINE 2</label>
+        <input ng-model="cust.address2" class="input" id="address_input">
+        <div class="flex">
+          <div>
+            <label class="label">CITY</label>
+            <input ng-model="cust.city" class="input" id="address_small">
+          </div>
+          <div>
+            <label class="label">STATE/PROVINCE</label>
+
+            <input ng-model="cust.state" class="input" id="address_small">
+          </div>
+          <div>
+            <label class="label">ZIP CODE</label>
+            <input ng-model="cust.zip" class="input" id="address_small">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <hr class="order_seperator">
+
+  </section>
+
+  <section class="order_main_content password">
+    <p>Please provide a password for your Tesla account.
+      You'll use this password to sign into our website and our app.
+      Use at least eight characters and a number.</p>
+
+
+      <div>
+        <label>PASSWORD</label>
+        <input ng-model="cust.pass"></input>
+      </div>
+
+      <div>
+        <label>CONFIRM PASSWORD</label>
+        <input ng-model="cust.pass2"></input>
+      </div>
+
+
+    <hr class="order_seperator">
+  </section>
+
+  <section class="order_line order_main_content">
+      <p>By placing this order you agree to the <a>Model S Order Agreement</a></p>
+      <button ng-click="passInfo(cust)">Continue</button>
+  </section>
+
+  
+
+  <div id="order_width">
+    <cars-footer>
+    </cars-footer>
+  </div>
+
+</section>

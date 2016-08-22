@@ -1,0 +1,99 @@
+<animation></animation>
+<section class="car_container">
+
+  <fixed-header>
+  </fixed-header>
+
+
+
+  <div class="your_car base">
+    <img  class="base-image" src='../assets/img/design-shop/base.jpg'/>
+    <img  class="a1" ng-src='{{personalizedCar.color_url}}'/>
+    <!-- <img  class="a1" ng-src='{{roof.img}}'/> -->
+    <img  class="a1" ng-src='{{personalizedCar.rim_url}}'/>
+
+    <h1 class="text">Model S RN20208{{individual.order_id}}</h1>
+      <hr>
+  </div>
+
+  <div class="your_car" id="no_translate">
+
+    <p>Model S requires a $2,500 order payment.<br>
+      To pay, choose one of the following options:
+    </p>
+
+    <div class="payment">
+      <button ng-click="showme= !showme"><img src="../assets/img/design-shop/payment/credit.png"/></button>
+
+
+      <button class="mid" ><img src="../assets/img/design-shop/payment/paypal.png"/> </button>
+
+      <button><img src="../assets/img/design-shop/payment/checking.png"/> </button>
+      <br>
+    </div>
+
+  <section ng-show="showme">
+    <div class="payment_credit">
+      <h1>Pay with your Credit Card</h1><br>
+
+      <p>Your information will be treated securely.  View our <a>security policy</a> for more information</p>
+
+    </div>
+
+    <section class="checkout flex">
+      <div class="left_checkout">
+        <label class="label">FULL NAME (AS IT APPEARS ON YOUR CREDIT CARD)</label>
+        <input class="input" id="name_input">
+        <label class="label">CREDIT CARD NUMBER</label>
+        <input class="input" id="name_input">
+        <div class="credit_exp">
+          <div>
+            <label class="label">EXPIRATION MONTH</label>
+            <input class="input">
+          </div>
+          <div>
+            <label class="label">EXPIRATION YEAR</label>
+            <input class="input">
+          </div>
+        </div>
+        <label class="label">CVV CODE</label>
+        <input class="input">
+      </div>
+
+      <div class="right_checkout">
+        <label class="label">BILLING COUNTRY</label>
+        <input class="input"  id="address_checkout">
+        <label class="label">BILLING ADDRESS LINE 1</label>
+        <input class="input"  id="address_checkout">
+        <label class="label">BILLING ADDRESS LINE 2</label>
+        <input class="input"  id="address_checkout">
+        <div class="flex">
+          <div>
+            <label class="label">CITY</label>
+            <input class="input" id="address_checkout_small">
+          </div>
+          <div>
+            <label class="label">STATE</label>
+            <input class="input" id="address_checkout_small">
+          </div>
+          <div>
+            <label class="label">ZIP CODE</label>
+            <input class="input" id="address_checkout_small">
+          </div>
+        </div>
+       </div>
+     </section>
+   </section>
+    <hr>
+
+    <section class="order_line order_main_content" id="full_width">
+      <p>By placing this order you agree to the <a>Model S Order Agreement</a></p>
+      <button ng-click="completeOrder()">PLACE ORDER</button>
+    </section>
+
+    <br><br><br>
+    <cars-footer>
+    </cars-footer>
+  </div>
+
+</section>

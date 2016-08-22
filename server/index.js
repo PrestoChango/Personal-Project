@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var massive = require('massive');
-var connectionString = 'postgres://postgres:thisisatest@localhost/tesla'
+var connectionString = 'postgres://postgres:practicesite@localhost/tesla'
 
 
 var massiveInstance = massive.connectSync({connectionString: connectionString});
@@ -20,8 +20,12 @@ app.get('/chargers', chargers.getChargeLocations);
 app.get('/product', chargers.getAllProduct);
 app.get('/customize/:id', chargers.customizeCar);
 app.get('/changeWheel/:id', chargers.changeWheel);
+app.get('/checkLogin', chargers.verifyLogin);
+app.get('/getOrder/:id', chargers.getOrder);
+app.get('/getCar', chargers.getCar);
 
-
+app.post('/checkout', chargers.createOrder);
+app.post('/createCustomer', chargers.createCustomer);
 
 
 

@@ -32,7 +32,6 @@ angular.module('app')
                     .state('shop', {
                       url: '/shop',
                       templateUrl: "../../../views/shop.html"
-                      // controller: 'shopCtrl'
                     })
                     .state('shopD', {
                       url: '/shop_design',
@@ -43,5 +42,24 @@ angular.module('app')
                       templateUrl: "../../../views/customize.html",
                       controller: 'designCtrl'
                     })
-
+                    .state('order', {
+                      url: '/order',
+                      templateUrl: "../../../views/place_order.html",
+                      controller: 'checkoutCtrl'
+                    })
+                    .state('yourcar', {
+                      url: '/yourcar',
+                      templateUrl: "../../../views/your_car.html",
+                      controller: 'personalCtrl'
+                    })
+                    .state('signin', {
+                      url: '/login',
+                      templateUrl: "../../../views/login.html",
+                      controller: 'loginCtrl'
+                    })
+                    .state('complete', {
+                      url: '/complete',
+                      templateUrl: "../../../views/complete.html",
+                      controller: 'checkout'
+                    })
 });
