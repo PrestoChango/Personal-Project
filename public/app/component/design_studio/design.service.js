@@ -19,6 +19,43 @@ angular.module('app')
         })
     }
 
+    this.changeRoof = function(roof) {
+      return $http({
+        method: 'GET',
+        url: '/changeRoof/' + roof
+      }).then(function(response) {
+        console.log(response);
+        return response.data;
+      })
+    }
+
+    this.changeLiner = function(liner) {
+      return $http({
+        method: 'GET',
+        url: '/changeLiner/' + liner
+      }).then(function(response) {
+        return response.data;
+      })
+    }
+
+    this.changeSeats = function(seats) {
+      return $http({
+        method: 'GET',
+        url: '/changeSeats/' + seats
+      }).then(function(response) {
+        return response.data;
+      })
+    }
+
+    this.changeDecor = function(decor) {
+      return $http({
+        method: 'GET',
+        url: '/changeDecor/' + decor
+      }).then(function(response) {
+        return response.data;
+      })
+    }
+
     this.createOrder = function(order) {
       order = angular.toJson(order, true);
       return $http({
@@ -68,5 +105,6 @@ angular.module('app')
         return response.data[0];
       })
     }
+
 
 });

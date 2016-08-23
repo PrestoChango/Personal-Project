@@ -23,8 +23,28 @@ module.exports = {
         res.send(wheel);
       })
     },
+    changeRoof: function(req, res, next) {
+      db.change_roof(req.params.id, function(err, roof) {
+        res.send(roof);
+      })
+    },
+    changeHeadliner: function(req, res, next) {
+      db.change_liner(req.params.id, function(err, liner) {
+        res.send(liner);
+      })
+    },
+    changeDecor: function(req, res, next) {
+      db.change_decor(req.params.id, function(err, decor) {
+        res.send(decor);
+      })
+    },
+    changeSeats: function(req, res, next) {
+      db.change_seats(req.params.id, function(err, seats) {
+        res.send(seats);
+      })
+    },
     createOrder: function(req, res, next) {
-      db.create_order([req.body.color_id, req.body.rim_id], function(err, order) {
+      db.create_order([req.body.color_id, req.body.rim_id, req.body.roof_id, req.body.seat_id, req.body.liner_id, req.body.decor_id], function(err, order) {
         res.send(order);
       })
     },
@@ -41,13 +61,14 @@ module.exports = {
       })
     },
     getOrder: function(req, res, next) {
+      console.log(req.params.id)
       db.get_order(req.params.id, function(err, order) {
+        console.log(order);
         res.send(order);
       })
     },
     getCar: function(req, res, next) {
-      db.get_car([req.query.rim_id, req.query.color_id], function(err, car) {
-        console.log(car);
+      db.get_car([req.query.rim_id, req.query.color_id, req.query.roof_id, req.query.liner_id, req.query.seat_id, req.query.decor_id], function(err, car) {
         res.send(car);
       })
     }

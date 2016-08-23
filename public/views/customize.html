@@ -1,13 +1,20 @@
-<section class="car_container">
+<section class="car_container" animation>
 
 <fixed-header>
 </fixed-header>
 
-<div class="cars">
-  <img  class="base-image" src='../../assets/img/design-shop/base.jpg'/>
+<div class="cars" ng-hide="showexterior">
+  <img  class="base-image" src='{{base.img}}'/>
   <img  class="a1" ng-src='{{cover.img}}'/>
   <img  class="a1" ng-src='{{roof.img}}'/>
   <img  class="a1" ng-src='{{tires.img}}'/>
+</div>
+
+<div class="cars" ng-show="showinside">
+  <img  class="base-image" src='{{iBase.img}}'/>
+  <img  class="a1" ng-src='{{base2.img}}'/>
+  <img  class="a1" ng-src='{{liner.img}}'/>
+  <img  class="a1" id="adjust_decor_to_fit" ng-src='{{decor.img}}'/>
 </div>
 
 <section class="fixed_size">
@@ -15,15 +22,15 @@
     <div class="car_colors" ng-show="showcolors">
       <img class="close_customizer" src="../assets/img/cross.svg" ng-click="showcolors=false; hidecontrols=false"/>
       <ul class="pick_a_color">
-        <li ng-click="paint(1)"></li>
-        <li class="outline" ng-click="paint(2)"></li>
-        <li ng-click="paint(3)"></li>
-        <li ng-click="paint(4)"></li>
-        <li ng-click="paint(5)"></li>
-        <li ng-click="paint(6)"></li>
-        <li ng-click="paint(7)"></li>
-        <li ng-click="paint(8)"></li>
-        <li ng-click="paint(9)"></li>
+        <li ng-click="paint(1)" value="1"></li>
+        <li class="outline" ng-click="paint(2)" value="2"></li>
+        <li ng-click="paint(3)" value="3"></li>
+        <li ng-click="paint(4)" value="4"></li>
+        <li ng-click="paint(5)" value="5"></li>
+        <li ng-click="paint(6)" value="6"></li>
+        <li ng-click="paint(7)" value="7"></li>
+        <li ng-click="paint(8)" value="8"></li>
+        <li ng-click="paint(9)" value="9"></li>
       </ul>
       <div class="under_text">
         <h4>Solid Black</h4>
@@ -40,17 +47,94 @@
 
     <div class="car_colors" ng-show="showrims">
       <img class="close_customizer" src="../assets/img/cross.svg" ng-click="showrims=false; hidecontrols=false"/>
-      <ul class="pick_your_style">
-        <li class="outline" ng-click="changeWheel(1)"></li>
-        <li ng-click="changeWheel(2)"></li>
-        <li ng-click="changeWheel(3)"></li>
-        <li ng-click="changeWheel(4)"></li>
-      </ul>
-      <div class="rims">
-        <h4>19" Silver Slipstream Wheels</h4>
-        <h4>19" Silver Cyclone Wheels $2,500</h4>
-        <h4>21" Silver Turbine Wheels $4,500</h4>
-        <h4>21" Grey Turbine Wheels $4,500</h4>
+
+      <div class="flex_options">
+
+        <div>
+          <ul class="pick_roof_type flex">
+            <li class="outline" value="1" ng-click="changeRoof(1)"></li>
+            <li ng-click="changeRoof(2)" value="2"></li>
+          </ul>
+          <div class='roof'>
+          <h4>Body Color Roof</h4>
+          <h4>All Glass Panoramic Roof $1,500</h4>
+        </div>
+        </div>
+
+        <div class="vertical_line"> </div>
+
+        <div>
+          <ul class="pick_your_style flex">
+            <li class="outline" ng-click="changeWheel(1)" value="1"></li>
+            <li ng-click="changeWheel(2)" value="2"></li>
+            <li ng-click="changeWheel(3)" value="3"></li>
+            <li ng-click="changeWheel(4)" value="4"></li>
+          </ul>
+          <div class="rims">
+            <h4>19" Silver Slipstream Wheels</h4>
+            <h4>19" Silver Cyclone Wheels $2,500</h4>
+            <h4>21" Silver Turbine Wheels $4,500</h4>
+            <h4>21" Grey Turbine Wheels $4,500</h4>
+          </div>
+        </div>
+      </div>
+
+      <div>
+
+      </div>
+    </div>
+
+    <div class="car_colors" ng-show="showinterior">
+      <img class="close_customizer" src="../assets/img/cross.svg" ng-click="showinterior=false; hidecontrols=false"/>
+      <div class="flex_options">
+
+        <div>
+          <ul class="pick_headliner flex_interior">
+            <li value="1" ng-click="changeHeadliner(1)"></li>
+            <li class="outline" ng-click="changeHeadliner(2)" value="2"></li>
+          </ul>
+          <div class='headliner under_text_all'>
+            <h4>Black Alcantara Headliner</h4>
+            <h4>White Alcantara Headliner</h4>
+        </div>
+      </div>
+
+        <div class="vertical_line"> </div>
+
+        <div>
+          <ul class="pick_decor flex_interior">
+            <li ng-click="changeDecor(1)" value="1"></li>
+            <li ng-click="changeDecor(2)" value="2"></li>
+            <li class="outline" ng-click="changeDecor(3)" value="3"></li>
+            <li ng-click="changeDecor(4)" value="4"></li>
+            <li ng-click="changeDecor(5)" value="5"></li>
+          </ul>
+          <div class="decor under_text_all">
+            <h4>Matte Obeche Wood Decor $750</h4>
+            <h4>Glossy Obeche Wood Decor $750</h4>
+            <h4>Dark Ash Wood Decor</h4>
+            <h4>Figured Ash Wood Decor $750</h4>
+            <h4>Carbon Fiber Decor $1000</h4>
+          </div>
+        </div>
+
+        <div class="vertical_line"> </div>
+
+        <div>
+          <ul class="pick_seats flex_interior">
+            <li class="outline" ng-click="changeSeats(1)" value="1"></li>
+            <li ng-click="changeSeats(2)" value="2"></li>
+            <li ng-click="changeSeats(3)" value="3"></li>
+            <li ng-click="changeSeats(4)" value="4"></li>
+          </ul>
+          <div class="seats under_text_all">
+            <h4>Multi-Pattern Black Seats</h4>
+            <h4>Grey Next Generation Seats $2,500</h4>
+            <h4>Tan Next Generation Seats $2,500</h4>
+            <h4>Black Next Generation Seats $2,500</h4>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -61,9 +145,9 @@
   </div>
 
   <div class="custom_bar">
-    <div class="custom" ng-click="showcolors=true; hidecontrols=true; showrims=false">Paint</div>
-    <div class="custom mid" ng-click="showrims=true; hidecontrols=true; showcolors=false">Wheels</div>
-    <div class="custom">Interior</div>
+    <div class="custom" ng-click="showcolors=true; hidecontrols=true; showrims=false; showinterior=false; showexterior=false; showinside=false">Paint</div>
+    <div class="custom mid" ng-click="showrims=true; hidecontrols=true; showcolors=false; showinterior=false; showexterior=false; showinside=false">Wheels & Roof</div>
+    <div class="custom" ng-click="showinterior=true; hidecontrols=true; showcolors=false; showrims=false; showinterior=true; showexterior=true; showinside=true">Interior</div>
   </div>
 
 

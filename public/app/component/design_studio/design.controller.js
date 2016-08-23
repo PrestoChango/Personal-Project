@@ -1,46 +1,29 @@
 angular.module('app')
   .controller('designCtrl', function($scope, designSrvc, designFact) {
 
-    $scope.cover = {
-      img: './assets/img/design-shop/paint/solidwhite.png'
-    }
+    //Exterior images
+    $scope.base = {img: './assets/img/design-shop/base.jpg'};
+    $scope.cover = {img: './assets/img/design-shop/paint/solidwhite.png'};
+    $scope.roof = {};
+    $scope.tires = {img: './assets/img/design-shop/exterior/slipstream19.png'};
 
-    $scope.roof = {
-      img: './assets/img/design-shop/exterior/sunroof.png'
-    }
-
-    $scope.tires = {
-      img: './assets/img/design-shop/exterior/slipstream19.png'
-    }
-
-    $scope.pricing = {
-      model: {
-        t60: 53000,
-        t75: 61500,
-        t90: 76500,
-        p90d: 96500
-      }
-    }
+    //Interior images
+    $scope.iBase = {img: '/assets/img/design-shop/interior/base.jpg'};
+    $scope.baseInt = {img: '/assets/img/design-shop/interior/base2.png'};
+    $scope.liner = {img: '/assets/img/design-shop/interior/white-headliner.png'};
+    $scope.decor = {img: '/assets/img/design-shop/interior/dark-ash-decor.png'};
 
     $scope.total = 53000;
 
     $scope.customCar = {
-      carType: {
-        model: 't60',
-        price: 53000
-      },
-      carColor: {
-        paint: 'Solid White',
-        price: 0
-      },
-      carWheels: {
-        rims: '19" Silver Slipstream Wheels',
-        price: 0
-      },
-      options: {
-        rim_id: 1,
-        color_id: 2
-      }
+      carType: {model: 't60', price: 53000},
+      carColor: {paint: 'Solid White', price: 0},
+      carWheels: {rims: '19" Silver Slipstream Wheels',price: 0},
+      carRoof: {roof: 'Body', price: 0},
+      headliner: {liner: 'White Alcantara Headliner', price: 0},
+      decor: {decor: 'Dark Ash Wood Decor', price: 0},
+      seats: {seat: 'Multi-Pattern Black Seats', price: 0},
+      options: {rim_id: 1, color_id: 2, liner_id: 2, decor_id: 3, seat_id: 1, roof_id: 1}
     };
 
     $scope.passOrder = function() {
@@ -48,12 +31,8 @@ angular.module('app')
     };
 
     $scope.calculateCost = function() {
-      $scope.total = $scope.customCar.carType.price + $scope.customCar.carColor.price + $scope.customCar.carWheels.price;
-    }
-
-    $scope.changePerformance = function(option) {
-      jQuery('.select_performance div').removeClass('outline');
-      jQuery('.select_performance div:nth-child(' + option + ')').addClass('outline');
+      $scope.total = $scope.customCar.carType.price + $scope.customCar.carColor.price + $scope.customCar.carWheels.price
+      + $scope.customCar.carRoof.price + $scope.customCar.headliner.price + $scope.customCar.seats.price + $scope.customCar.decor.price;
     }
 
     $scope.paint = function(color) {
@@ -62,14 +41,6 @@ angular.module('app')
         $scope.customCar.carColor.paint = response[0].color;
         $scope.customCar.carColor.price = response[0].color_price;
         $scope.customCar.options.color_id = color;
-        if($('.under_text h4').is(':visible')) {
-          jQuery('.under_text h4').hide();
-          jQuery('.pick_a_color li').removeClass('outline')
-          jQuery('.under_text h4:nth-child(' + color + ')').show();
-          jQuery('.pick_a_color li:nth-child(' + color + ')').addClass('outline');
-        } else if ($('.under_text h4').is(':hidden')) {
-          jQuery('.under_text h4:nth-child(' + color + ')').show();
-        }
         $scope.calculateCost();
       })
     }
@@ -80,17 +51,49 @@ angular.module('app')
         $scope.customCar.carWheels.rims = response[0].style;
         $scope.customCar.carWheels.price = response[0].rim_price;
         $scope.customCar.options.rim_id = type;
-        if($('.rims h4').is(':visible')) {
-          jQuery('.rims h4').hide();
-          jQuery('.pick_your_style li').removeClass('outline');
-          jQuery('.rims h4:nth-child(' + type + ')').show();
-          jQuery('.pick_your_style li:nth-child(' + type + ')').addClass('outline');
-        } else if ($('.rims h4').is(':hidden')) {
-          jQuery('rims h4:nth-child(' + type + ')').show();
-        }
         $scope.calculateCost();
       })
     }
 
+    $scope.changeRoof = function(roof) {
+      designSrvc.changeRoof(roof).then(function(response) {
+        $scope.roof.img = response[0].roof_url;
+        $scope.customCar.carRoof.roof = response[0].roof;
+        $scope.customCar.carRoof.price = response[0].roof_price;
+        $scope.customCar.options.roof_id = roof;
+        $scope.calculateCost();
+    })
+  }
+
+    $scope.changeHeadliner = function(liner) {
+      designSrvc.changeLiner(liner).then(function(response) {
+        $scope.liner.img = response[0].liner_url;
+        $scope.customCar.headliner.liner = response[0].liner;
+        $scope.customCar.headliner.price = response[0].liner_price;
+        $scope.customCar.options.liner_id = liner;
+        $scope.calculateCost();
+      })
+    }
+
+    $scope.changeDecor = function(decor) {
+      designSrvc.changeDecor(decor).then(function(response) {
+        $scope.decor.img = response[0].decor_url;
+        $scope.customCar.decor.decor = response[0].decor;
+        $scope.customCar.decor.price = response[0].decor_price;
+        $scope.customCar.options.decor_id = decor;
+        $scope.calculateCost();
+      })
+    }
+
+    $scope.changeSeats= function(seats) {
+      designSrvc.changeSeats(seats).then(function(response) {
+        $scope.iBase.img = response[0].seat_url;
+        $scope.baseInt.img = response[0].seat_mid_url;
+        $scope.customCar.seats.seats = response[0].seats;
+        $scope.customCar.seats.price = response[0].seat_price;
+        $scope.customCar.options.seat_id = seats;
+        $scope.calculateCost();
+      })
+    }
 
 })

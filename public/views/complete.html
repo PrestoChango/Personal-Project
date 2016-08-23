@@ -9,15 +9,29 @@
 
   <hr class="buffer_top">
 
-  <h1>Your custom Tesla Model S will be delivered late October</h1>
-  <h3>You have selected the following options</h3>
-  <ul class="order_details">
-    <li>Paint: {{personalizedCar.color}}</li>
-    <li>Wheel Type: {{personalizedCar.style}}</li>
-  </ul>
-    <!-- Your order is complete!  You will receive you car in 6 to 8 weeks. -->
+  <h1 class="buffer_bottom">Your custom Tesla Model S will be delivered late October</h1>
+  <h3>You have selected the following options:</h3>
 
-      <cars-footer>
+  <ul class="order_details">
+    <li class="red">Exterior</li>
+    <li>{{personalizedCar.color}} paint</li>
+    <li>{{personalizedCar.style}}</li>
+    <li>{{personalizedCar.roof}}</li>
+  </ul>
+
+  <br>
+  <ul class="order_details">
+    <li class="red">Interior</li>
+    <li>{{personalizedCar.seat}}</li>
+    <li>{{personalizedCar.decor}}</li>
+    <li>{{personalizedCar.liner}}</li>
+  </ul>
+
+  <h2 class="buffer_top buffer_bottom">Your order total is ${{total}}</h2>
+
+  <h1>Confirmation# {{confirm}}</h1>
+
+      <cars-footer class="foot">
       </cars-footer>
   </section>
 

@@ -589,6 +589,10 @@ height: 500px;
   align-items: center;
 }
 
+#adjust_decor_to_fit {
+  top: 0px;
+}
+
 .car_colors {
     margin: auto;
     height: 170px;
@@ -671,16 +675,69 @@ height: 500px;
   margin: 10px;
 }
 
-.pick_your_style {
+.vertical_line {
+  border-right: 1px;
+  height: 78px;
+  border-color: #666666;
+  margin-left: 25px;
+  margin-right: 25px;
+  border-style: solid;
+}
+
+.flex_options {
   display: flex;
   justify-content: center;
   padding-top: 30px;
 }
 
+.flex_interior {
+  display: flex;
+  justify-content: flex-end;
+}
+.roof {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  width: 80%;
+  margin: auto;
+}
+.roof h4 {
+  display: none;
+  justify-content: flex-end;
+}
+
+.roof> h4:nth-child(1){
+  display: inline;
+}
+
+.pick_roof_type {
+
+}
+
+.pick_roof_type li {
+  width: 110px;
+  height: 78px;
+  margin-left: 20px
+}
+
+.pick_roof_type > li:nth-child(1) {
+  background: url('../img/design-shop/exterior/roof.png') no-repeat 0px -78px;
+  background-size: 440px 780px;
+}
+
+.pick_roof_type > li:nth-child(2) {
+  background: url('../img/design-shop/exterior/roof.png') no-repeat -110px -78px;
+  background-size: 220px 780px;
+}
+
+.pick_your_style {
+
+}
+
 .pick_your_style li {
   width: 110px;
   height: 78px;
-  margin-left: 20px;
 }
 
 .pick_your_style > li:nth-child(1){
@@ -691,16 +748,117 @@ height: 500px;
 .pick_your_style > li:nth-child(2){
   background: url('../img/design-shop/exterior/wheels.png') no-repeat -220px 0px;
   background-size: 550px 78px;
+  margin-left: 20px;
 }
 
 .pick_your_style > li:nth-child(3){
   background: url('../img/design-shop/exterior/wheels.png') no-repeat -330px 0px;
   background-size: 550px 78px;
+  margin-left: 20px;
 }
 
 .pick_your_style > li:nth-child(4){
   background: url('../img/design-shop/exterior/wheels.png') no-repeat -440px 0px;
   background-size: 550px 78px;
+  margin-left: 20px;
+}
+
+.headliner h4:nth-child(2) {
+  display: inline;
+}
+
+.pick_headliner li {
+  width: 60px;
+  height: 67px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.pick_headliner > li:nth-child(1){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -720px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_headliner > li:nth-child(2){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -660px 0px;
+  background-size: 780px 67px;
+}
+
+
+.pick_decor > li:nth-child(1){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -360px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_decor > li:nth-child(2){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -420px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_decor > li:nth-child(3){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -540px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_decor > li:nth-child(4){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -480px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_decor > li:nth-child(5){
+  background: url('../img/design-shop/interior/inside.png') no-repeat -600px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_decor li {
+  width: 60px;
+  height: 67px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.decor h4:nth-child(3){
+  display: inline;
+}
+
+.seats h4:nth-child(1) {
+  display: inline;
+}
+
+.pick_seats li {
+  width: 60px;
+  height: 67px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.pick_seats > li:nth-child(1) {
+  background: url('../img/design-shop/interior/inside.png') no-repeat -60px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_seats > li:nth-child(2) {
+  background: url('../img/design-shop/interior/inside.png') no-repeat -240px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_seats > li:nth-child(3) {
+  background: url('../img/design-shop/interior/inside.png') no-repeat -180px 0px;
+  background-size: 780px 67px;
+}
+
+.pick_seats > li:nth-child(4) {
+  background: url('../img/design-shop/interior/inside.png') no-repeat -120px 0px;
+  background-size: 780px 67px;
+}
+
+.under_text_all {
+  padding-top: 10px;
+  color: white;
+}
+
+.under_text_all h4 {
+  display: none;
 }
 
 .under_text {
@@ -730,6 +888,7 @@ height: 500px;
 
 .rims h4 {
   display: none;
+  justify-content: flex-end;
 }
 
 .rims > h4:nth-child(1){
@@ -1246,6 +1405,27 @@ height: 500px;
   color: #666666;
 }
 
+.order_complete h3 {
+  margin-bottom: 15px;
+}
+
 .order_details {
   color: #818181;
+}
+
+.order_details li {
+  line-height: 20px;
+}
+
+.buffer_bottom {
+  margin-bottom: 30px;
+}
+
+.foot {
+  position: absolute;
+  bottom: 0;
+}
+
+.red {
+  color: #CC0000;
 }
