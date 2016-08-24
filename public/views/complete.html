@@ -1,39 +1,47 @@
-<section class="car_container">
+<section class="car_container full_height">
 
   <fixed-header>
   </fixed-header>
 
+
   <section class="order_complete">
 
-  <h1>{{individual.first}}'s Tesla Order</h1>
+  <div class="tesla_logo">
+    <img src="../assets/img/tesla_logo.png"/>
+  </div>
+
+  <h1 class="center_text">{{individual.first}}'s Tesla Order</h1>
 
   <hr class="buffer_top">
 
-  <h1 class="buffer_bottom">Your custom Tesla Model S will be delivered late October</h1>
-  <h3>You have selected the following options:</h3>
+  <h1 class="buffer_bottom center_text">Your custom Tesla Model S will be delivered late October</h1>
+  <h3 class="center_text">You have selected the following options</h3>
 
-  <ul class="order_details">
-    <li class="red">Exterior</li>
-    <li>{{personalizedCar.color}} paint</li>
-    <li>{{personalizedCar.style}}</li>
-    <li>{{personalizedCar.roof}}</li>
-  </ul>
+<div class="flex_around">
+  <div>
+    <ul class="order_details">
+      <li class="red">Exterior</li>
+      <li>{{personalizedCar.color}} paint</li>
+      <li>{{personalizedCar.style}}</li>
+      <li>{{personalizedCar.roof}}</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="order_details">
+      <li class="red">Interior</li>
+      <li>{{personalizedCar.seat}}</li>
+      <li>{{personalizedCar.decor}}</li>
+      <li>{{personalizedCar.liner}}</li>
+    </ul>
+  </div>
+</div>
+  <h3 class="buffer_top buffer_bottom center_text">Your order total is <span class="green">${{total}}<span></h3>
 
-  <br>
-  <ul class="order_details">
-    <li class="red">Interior</li>
-    <li>{{personalizedCar.seat}}</li>
-    <li>{{personalizedCar.decor}}</li>
-    <li>{{personalizedCar.liner}}</li>
-  </ul>
+  <h1 class="center_text">Confirmation# {{confirm}}</h1>
 
-  <h2 class="buffer_top buffer_bottom">Your order total is ${{total}}</h2>
 
-  <h1>Confirmation# {{confirm}}</h1>
-
-      <cars-footer class="foot">
-      </cars-footer>
   </section>
 
-
+  <cars-footer class="foot">
+  </cars-footer>
 </section>

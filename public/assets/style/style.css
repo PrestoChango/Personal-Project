@@ -34,7 +34,7 @@
 }
 
 .header-links a {
-  color: white;
+  /*color: white;*/
   text-decoration: none;
   font-family: Gotham Medium,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: normal;
@@ -184,6 +184,7 @@ margin-right: 5px;
   align-items: center;
   padding-left: 9px;
   text-decoration: none;
+  font-family: 'arial';
 }
 
 .info-footer:after {
@@ -411,6 +412,7 @@ font-weight: bold;
   min-width: 1028px;
   max-width: 1440px;
   margin: auto;
+  position: relative;
 }
 
 .top_shop {
@@ -450,6 +452,15 @@ height: 500px;
   display: -webkit-inline-box;
 }
 
+.main_graphic_nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.main_graphic_nav a:hover {
+    color: #989898;
+}
+
 .main_graphic_nav ul{
  margin-left: 480px;
 }
@@ -458,7 +469,7 @@ height: 500px;
   padding-top: 80px;
   padding-bottom: 55px;
   text-align: center;
-
+  font-family: 'arial';
 }
 .container_intro {
   width: 672px;
@@ -481,6 +492,7 @@ height: 500px;
   margin-right: 10%;
   margin-left: 10%;
   margin-bottom: 60px;
+  font-family: 'arial';
 }
 
 .features h4 {
@@ -607,6 +619,7 @@ height: 500px;
 .fixed_size {
   width: 80%;
   margin: auto;
+  font-family: 'arial';
 }
 
 .pick_a_color {
@@ -711,10 +724,6 @@ height: 500px;
   display: inline;
 }
 
-.pick_roof_type {
-
-}
-
 .pick_roof_type li {
   width: 110px;
   height: 78px;
@@ -729,10 +738,6 @@ height: 500px;
 .pick_roof_type > li:nth-child(2) {
   background: url('../img/design-shop/exterior/roof.png') no-repeat -110px -78px;
   background-size: 220px 780px;
-}
-
-.pick_your_style {
-
 }
 
 .pick_your_style li {
@@ -772,6 +777,9 @@ height: 500px;
   height: 67px;
   margin-left: 5px;
   margin-right: 5px;
+  border-color: #676767;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .pick_headliner > li:nth-child(1){
@@ -815,6 +823,9 @@ height: 500px;
   height: 67px;
   margin-left: 5px;
   margin-right: 5px;
+  border-color: #676767;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .decor h4:nth-child(3){
@@ -830,6 +841,9 @@ height: 500px;
   height: 67px;
   margin-left: 5px;
   margin-right: 5px;
+  border-color: #676767;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .pick_seats > li:nth-child(1) {
@@ -868,6 +882,7 @@ height: 500px;
   color: white;
   width: 80%;
   margin: auto;
+  font-family: 'arial';
 }
 .under_text h4 {
   display: none;
@@ -912,8 +927,27 @@ height: 500px;
   width: 340px;
   height: auto;
   background-color: #2C2C2C;
+  border: 1px solid #767676;
 }
 
+.right_column hr {
+  width: 85%;
+  border: 0;
+  border-top: 1px solid #dad2d2;
+  padding: 8px 0px 8px 0px;
+}
+
+.right_column p {
+  margin-top: 35px;
+  color: white;
+  font-size: 13px;
+}
+
+.right_column h1 {
+  font-size: 13px;
+  line-height: 28px;
+  color: #BDBDBD;
+}
 .main_content {
   display: flex;
   margin-top: 30px;
@@ -943,14 +977,13 @@ height: 500px;
 }
 
 .pricing {
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   height: 60px;
   background-color: #2C2C2C;
   align-items: center;
   display: flex;
   justify-content: center;
-
 }
 
 .select_performance {
@@ -959,6 +992,7 @@ height: 500px;
   display: flex;
   justify-content: space-between;
   text-align: center;
+  font-size: 15px;
 }
 
 .select_performance div {
@@ -1012,7 +1046,7 @@ height: 500px;
   text-align: center;
 }
 .total_cost h3 {
-  font-size: 35px;
+  font-size: 31px;
   color: white;
 }
 
@@ -1033,6 +1067,7 @@ height: 500px;
   align-items: center;
   width: 100%;
   bottom: 0px;
+  border-top: 1px solid #767676;
 }
 
 .order_footer a {
@@ -1217,7 +1252,7 @@ height: 500px;
 }
 
 .buffer_top {
-  margin-top: 25px;
+  margin-top: 35px;
 }
 
 #address_input {
@@ -1311,6 +1346,7 @@ height: 500px;
 .checkout {
   display: flex;
   margin-top: 30px;
+  font-family: 'arial';
 }
 
 .left_checkout {
@@ -1406,7 +1442,9 @@ height: 500px;
 }
 
 .order_complete h3 {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #666666;
 }
 
 .order_details {
@@ -1418,7 +1456,7 @@ height: 500px;
 }
 
 .buffer_bottom {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .foot {
@@ -1428,4 +1466,54 @@ height: 500px;
 
 .red {
   color: #CC0000;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a {
+  color: white;
+}
+.active {
+  color: #797979;
+}
+
+.tesla_logo {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.tesla_logo img {
+  width: 500px;
+  height: 65.25px;
+}
+
+.flex_around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.green {
+  color: rgb(47, 226, 49)
+}
+
+#invalid {
+  color: #CC0000;
+  font-size: 13px;
+}
+
+.buffer_bottom_small {
+  margin-bottom: 18px;
+}
+
+.full_height{
+  min-height: 750px;
+  height: 100vh;
+}
+
+#landing_foot {
+  display: flex;
+  justify-content: center;
 }

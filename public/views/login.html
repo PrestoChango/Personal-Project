@@ -1,17 +1,21 @@
 <section class="car_container">
 
+
 <fixed-header>
 </fixed-header>
 
 <section class="login">
   <section class="login_pane">
       <h1 class="center_text">Sign In</h1>
-      <hr>
+      <hr class="buffer_bottom_small">
       <input id="login_pane_item_width" ng-model="user.email" placeholder="Email address" class="input">
       <input  type="password" id="login_pane_item_width" ng-model="user.password" placeholder="Password" class="input">
+      <h1 id="invalid" ng-hide="valid">Invalid e-mail or password</h1>
       <button ng-click="login()">Sign In</button>
   </section>
+
 </section>
+
 
 <cars-footer class="bottoms white">
 </cars-footer>

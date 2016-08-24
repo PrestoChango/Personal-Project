@@ -61,9 +61,7 @@ module.exports = {
       })
     },
     getOrder: function(req, res, next) {
-      console.log(req.params.id)
       db.get_order(req.params.id, function(err, order) {
-        console.log(order);
         res.send(order);
       })
     },

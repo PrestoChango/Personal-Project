@@ -70,8 +70,6 @@ angular.module('app')
             $('.pick_seats li:nth-child(' + seats + ')').addClass('outline');
           })
 
-
-
       }
     }
 })

@@ -13,7 +13,14 @@ angular.module('app')
     $scope.liner = {img: '/assets/img/design-shop/interior/white-headliner.png'};
     $scope.decor = {img: '/assets/img/design-shop/interior/dark-ash-decor.png'};
 
+    $scope.monetize = function() {
+      $scope.total = $scope.total.toString().split('');
+      $scope.total.splice($scope.total.length - 3, 0, ',');
+      $scope.total = $scope.total.join('');
+    }
+
     $scope.total = 53000;
+    $scope.monetize();
 
     $scope.customCar = {
       carType: {model: 't60', price: 53000},
@@ -33,6 +40,7 @@ angular.module('app')
     $scope.calculateCost = function() {
       $scope.total = $scope.customCar.carType.price + $scope.customCar.carColor.price + $scope.customCar.carWheels.price
       + $scope.customCar.carRoof.price + $scope.customCar.headliner.price + $scope.customCar.seats.price + $scope.customCar.decor.price;
+      $scope.monetize();
     }
 
     $scope.paint = function(color) {

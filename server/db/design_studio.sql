@@ -89,7 +89,7 @@ CREATE TABLE customer (
   first varchar(30),
   last varchar(30),
   email varchar(50),
-  phone varchar(10),
+  phone varchar(15),
   address1 varchar(50),
   address2 varchar(50),
   city varchar(30),
