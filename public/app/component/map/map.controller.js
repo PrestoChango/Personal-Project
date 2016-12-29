@@ -1,9 +1,9 @@
 angular.module('app')
   .controller('mapsCtrl', function($scope, mapsSrvc) {
 
-    $scope.getChargers = function() {
-      mapsSrvc.getAllLocations().then(function(response) {
-        for (var i = 0; i < response.length; i++) {
+    $scope.getChargers = () => {
+      mapsSrvc.getAllLocations().then((response) => {
+        for (let i = 0; i < response.length; i++) {
           response[i].gps = response[i].gps.split(', ')
         }
         $scope.location = response;
@@ -11,7 +11,7 @@ angular.module('app')
       })
     }
 
-    $scope.initMap = function() {
+    $scope.initMap = () => {
       $scope.icon = {
         url: "../../../assets/img/supercharger.png",
         scaledSize: new google.maps.Size(23, 35)
@@ -60,11 +60,10 @@ angular.module('app')
       $scope.autoComplete.bindTo('bounds', $scope.map);
 
       //runs when place is selected from dropdown list
-      $scope.autoComplete.addListener('place_changed', function() {
+      $scope.autoComplete.addListener('place_changed', () => {
         $scope.infowindow.close();
         $scope.marker1.setVisible(false);
         $scope.place = $scope.autoComplete.getPlace();
-        console.log($scope.place);
          if (!$scope.place.geometry) {
           //  window.alert("Autocomplete's returned place contains no geometry");
            return;
@@ -104,7 +103,7 @@ angular.module('app')
       })
 
 
-      for (var i = 0; i < $scope.location.length; i++){
+      for (let i = 0; i < $scope.location.length; i++){
         $scope.latLng = new google.maps.LatLng($scope.location[i].gps[0], $scope.location[i].gps[1]);
         $scope.marker = new google.maps.Marker({
           position: $scope.latLng,
@@ -114,10 +113,10 @@ angular.module('app')
         $scope.marker.info = $scope.location[i];
         $scope.marker.addListener('click', function() {
           $scope.station = this.info;
-          if($('.info-pane').is(':hidden')) {
-            jQuery('.info-pane').show();
-          }
           $scope.map.setZoom(8);
+          if($('.info-pane').is(':hidden')) {
+            $('.info-pane').show();
+          }
           $scope.latLng = new google.maps.LatLng(this.info.gps[0], this.info.gps[1])
           $scope.map.setCenter($scope.latLng);
           $scope.$apply();

@@ -24,7 +24,6 @@ angular.module('app')
         method: 'GET',
         url: '/changeRoof/' + roof
       }).then(function(response) {
-        console.log(response);
         return response.data;
       })
     }

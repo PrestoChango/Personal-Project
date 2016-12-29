@@ -4,18 +4,15 @@ angular.module('app')
     $scope.individual = designFact.getCust();
     $scope.car = designFact.get();
 
-    console.log($scope.car);
-
-    designSrvc.getCar($scope.car).then(function(response) {
-      console.log(response);
+    designSrvc.getCar($scope.car).then((response) => {
       $scope.personalizedCar = response;
     });
 
-    $scope.getInfo = function(){
-      console.log(designFact.get());
+    $scope.getInfo = () => {
+      designFact.get();
     }
 
-    $scope.completeOrder = function() {
+    $scope.completeOrder = () => {
       $state.go('complete');
     }
 })

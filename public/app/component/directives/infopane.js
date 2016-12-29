@@ -4,12 +4,12 @@ angular.module('app')
       return {
         restrict: 'E',
         templateUrl: 'app/component/directives/templates/infoPane.html',
-        link: function(scope, element, attr) {
+        link: (scope, element, attr) => {
 
-        element.on('click', function(e) {
+        element.on('click', e => {
 
           if (angular.element(e.target).hasClass('close')) {
-            jQuery('.info-pane').hide();
+            $('.info-pane').hide();
           }
 
 

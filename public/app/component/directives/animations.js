@@ -15,7 +15,7 @@ angular.module('app')
           });
 
           $('.pick_a_color li').on('click', function() {
-            var color = $(this).val();
+            const color = $(this).val();
             if($('.under_text h4').is(':visible')) {
               $('.under_text h4').hide();
               $('.pick_a_color li').removeClass('outline')
@@ -27,7 +27,7 @@ angular.module('app')
           });
 
           $('.pick_your_style li').on('click', function() {
-            var type = $(this).val();
+            const type = $(this).val();
             if($('.rims h4').is(':visible')) {
               $('.rims h4').hide();
               $('.pick_your_style li').removeClass('outline');
@@ -39,7 +39,7 @@ angular.module('app')
           })
 
           $('.pick_roof_type li').on('click', function() {
-            var roof = $(this).val();
+            const roof = $(this).val();
             $('.roof h4').hide();
             $('.roof h4:nth-child(' + roof + ')').show();
             $('.pick_roof_type li').removeClass('outline');
@@ -47,7 +47,7 @@ angular.module('app')
           })
 
           $('.pick_headliner li').on('click', function() {
-            var headliner = $(this).val();
+            const headliner = $(this).val();
             $('.headliner h4').hide();
             $('.headliner h4:nth-child(' + headliner + ')').show();
             $('.pick_headliner li').removeClass('outline');
@@ -55,7 +55,7 @@ angular.module('app')
           })
 
           $('.pick_decor li').on('click', function() {
-            var decor = $(this).val();
+            const decor = $(this).val();
             $('.decor h4').hide();
             $('.decor h4:nth-child(' + decor + ')').show();
             $('.pick_decor li').removeClass('outline');
@@ -63,13 +63,12 @@ angular.module('app')
           })
 
           $('.pick_seats li').on('click', function() {
-            var seats = $(this).val();
+            const seats = $(this).val();
             $('.seats h4').hide();
             $('.seats h4:nth-child(' + seats + ')').show();
             $('.pick_seats li').removeClass('outline');
             $('.pick_seats li:nth-child(' + seats + ')').addClass('outline');
           })
-
       }
     }
 })

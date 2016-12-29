@@ -13,7 +13,7 @@ angular.module('app')
     $scope.liner = {img: '/assets/img/design-shop/interior/white-headliner.png'};
     $scope.decor = {img: '/assets/img/design-shop/interior/dark-ash-decor.png'};
 
-    $scope.monetize = function() {
+    $scope.monetize = () => {
       $scope.total = $scope.total.toString().split('');
       $scope.total.splice($scope.total.length - 3, 0, ',');
       $scope.total = $scope.total.join('');
@@ -33,18 +33,18 @@ angular.module('app')
       options: {rim_id: 1, color_id: 2, liner_id: 2, decor_id: 3, seat_id: 1, roof_id: 1}
     };
 
-    $scope.passOrder = function() {
+    $scope.passOrder = () => {
       designFact.pass($scope.customCar.options);
     };
 
-    $scope.calculateCost = function() {
+    $scope.calculateCost = () => {
       $scope.total = $scope.customCar.carType.price + $scope.customCar.carColor.price + $scope.customCar.carWheels.price
       + $scope.customCar.carRoof.price + $scope.customCar.headliner.price + $scope.customCar.seats.price + $scope.customCar.decor.price;
       $scope.monetize();
     }
 
-    $scope.paint = function(color) {
-      designSrvc.updateBody(color).then(function(response) {
+    $scope.paint = (color) => {
+      designSrvc.updateBody(color).then((response) => {
         $scope.cover.img = response[0].color_url;
         $scope.customCar.carColor.paint = response[0].color;
         $scope.customCar.carColor.price = response[0].color_price;
@@ -53,8 +53,8 @@ angular.module('app')
       })
     }
 
-    $scope.changeWheel = function(type) {
-      designSrvc.changeWheel(type).then(function(response) {
+    $scope.changeWheel = (type) => {
+      designSrvc.changeWheel(type).then((response) => {
         $scope.tires.img = response[0].rim_url;
         $scope.customCar.carWheels.rims = response[0].style;
         $scope.customCar.carWheels.price = response[0].rim_price;
@@ -63,8 +63,8 @@ angular.module('app')
       })
     }
 
-    $scope.changeRoof = function(roof) {
-      designSrvc.changeRoof(roof).then(function(response) {
+    $scope.changeRoof = (roof) => {
+      designSrvc.changeRoof(roof).then((response) => {
         $scope.roof.img = response[0].roof_url;
         $scope.customCar.carRoof.roof = response[0].roof;
         $scope.customCar.carRoof.price = response[0].roof_price;
@@ -73,8 +73,8 @@ angular.module('app')
     })
   }
 
-    $scope.changeHeadliner = function(liner) {
-      designSrvc.changeLiner(liner).then(function(response) {
+    $scope.changeHeadliner = (liner) => {
+      designSrvc.changeLiner(liner).then((response) => {
         $scope.liner.img = response[0].liner_url;
         $scope.customCar.headliner.liner = response[0].liner;
         $scope.customCar.headliner.price = response[0].liner_price;
@@ -83,8 +83,8 @@ angular.module('app')
       })
     }
 
-    $scope.changeDecor = function(decor) {
-      designSrvc.changeDecor(decor).then(function(response) {
+    $scope.changeDecor = (decor) => {
+      designSrvc.changeDecor(decor).then((response) => {
         $scope.decor.img = response[0].decor_url;
         $scope.customCar.decor.decor = response[0].decor;
         $scope.customCar.decor.price = response[0].decor_price;
@@ -93,8 +93,9 @@ angular.module('app')
       })
     }
 
-    $scope.changeSeats= function(seats) {
-      designSrvc.changeSeats(seats).then(function(response) {
+    $scope.changeSeats = (seats) => {
+      designSrvc.changeSeats(seats).then((response) => {
+        console.log(response);
         $scope.iBase.img = response[0].seat_url;
         $scope.baseInt.img = response[0].seat_mid_url;
         $scope.customCar.seats.seats = response[0].seats;

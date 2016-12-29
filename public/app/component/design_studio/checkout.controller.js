@@ -3,11 +3,11 @@ angular.module('app')
 
     $scope.orderDetails = designFact.get();
 
-    $scope.passInfo = function(cust) {
-      designSrvc.createOrder($scope.orderDetails).then(function(response) {
+    $scope.passInfo = (cust) => {
+      designSrvc.createOrder($scope.orderDetails).then((response) => {
         cust.order_id = response;
         designFact.passCust(cust);
-        designSrvc.createCustomer(cust).then(function(response) {
+        designSrvc.createCustomer(cust).then((response) => {
           designFact.passCust(cust);
           $state.go('yourcar');
         })

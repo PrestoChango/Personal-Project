@@ -49,6 +49,8 @@
 }
 
 .video-container {
+  /*position: relative;*/
+  min-width: 1028px;
  position: fixed;
  top: 0;
  right: 0;
@@ -443,6 +445,7 @@ height: 500px;
   font-family: Gotham Light,"M Hei PRC W45","M Hei HK W42","M Hei HK W40","HelveticaNeue-Regular","Helvetica Neue Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
   border-bottom: 1px solid rgba(255,255,255,0.5);
   padding-bottom: 25px;
+  min-width: 1028px
 }
 
 .main_graphic_nav li{
@@ -459,10 +462,6 @@ height: 500px;
 
 .main_graphic_nav a:hover {
     color: #989898;
-}
-
-.main_graphic_nav ul{
- margin-left: 480px;
 }
 
 .container {
@@ -701,6 +700,7 @@ height: 500px;
   display: flex;
   justify-content: center;
   padding-top: 30px;
+  text-align: center;
 }
 
 .flex_interior {
@@ -924,7 +924,7 @@ height: 500px;
 .right_column {
   position: relative;
   max-height: 500px;
-  width: 340px;
+  min-width: 340px;
   height: auto;
   background-color: #2C2C2C;
   border: 1px solid #767676;

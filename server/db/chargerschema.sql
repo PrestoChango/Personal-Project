@@ -13,6 +13,7 @@ CREATE TABLE super_chargers (
     Tesla VARCHAR(20),
     Discuss VARCHAR(20)
 );
+
 INSERT INTO super_chargers VALUES ('Greenville, AL','219 Interstate Dr','Greenville','AL',36037,'USA',6,'31.855989, -86.635765',145,'Open','2014-12-06 00:00:00','SC','thread');
 INSERT INTO super_chargers VALUES ('Auburn, AL','1627 Opelika Rd','Auburn','AL',NULL,'USA',6,'32.625185, -85.446314',222,'Open','2014-12-23 00:00:00','SC','thread');
 INSERT INTO super_chargers VALUES ('Mobile, AL','3201 Airport Blvd','Mobile','AL',36606,'USA',8,'30.675347, -88.11901',6,'Open','2015-04-16 00:00:00','SC','thread');

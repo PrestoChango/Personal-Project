@@ -1,21 +1,21 @@
 angular.module('app')
   .factory('designFact', function() {
-    var order = {};
-    var customer = {};
+    let order = {};
+    let customer = {};
 
-    function passOrder(data) {
+    let passOrder = function(data) {
       order = data;
     }
 
-    function getOrder() {
+    let getOrder = () => {
       return order;
     }
 
-    function passCustomerInfo(data) {
+    let passCustomerInfo = (data) => {
       customer = data;
     }
 
-    function getCustomerInfo() {
+    let getCustomerInfo = () => {
       return customer;
     }
 
