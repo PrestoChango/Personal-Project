@@ -6,6 +6,7 @@ const connectionString = 'postgres://postgres@localhost/tesla'
 
 
 const massiveInstance = massive.connectSync({connectionString: connectionString});
+
 const app = module.exports = express();
 
 app.use(bodyParser.json());

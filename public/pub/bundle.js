@@ -53,6 +53,309 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
 });
 'use strict';
 
+angular.module('app').controller('loginCtrl', function ($scope, $state, designSrvc, designFact) {
+
+  $scope.valid = true;
+  $scope.login = function () {
+    designSrvc.verifyLogin($scope.user).then(function (response) {
+      designFact.passCust(response);
+      if (response === undefined) {
+        $scope.valid = false;
+      } else {
+        designSrvc.getOrder(response.order_id).then(function (response) {
+
+          $scope.options = {
+            rim_id: response.rim_id,
+            color_id: response.color_id,
+            roof_id: response.roof_id,
+            seat_id: response.seat_id,
+            liner_id: response.liner_id,
+            decor_id: response.decor_id
+          };
+          designFact.pass($scope.options);
+          $state.go('yourcar');
+        });
+      }
+    });
+  };
+});
+'use strict';
+
+angular.module('app').controller('mapsCtrl', function ($scope, mapsSrvc) {
+
+  $scope.getChargers = function () {
+    mapsSrvc.getAllLocations().then(function (response) {
+      for (var i = 0; i < response.length; i++) {
+        response[i].gps = response[i].gps.split(', ');
+      }
+      $scope.location = response;
+      $scope.initMap();
+    });
+  };
+
+  $scope.initMap = function () {
+    $scope.icon = {
+      url: "../../../assets/img/supercharger.png",
+      scaledSize: new google.maps.Size(23, 35)
+    };
+
+    $scope.mapDiv = document.getElementById('map');
+
+    $scope.map = new google.maps.Map($scope.mapDiv, {
+      center: { lat: 39.8333333, lng: -98.585522 },
+      zoom: 5,
+      mapTypeControl: false,
+      streetViewControl: false,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
+      styles: [{
+        featureType: 'road',
+        stylers: [{ saturation: -80 }]
+      }, {
+        featureType: 'poi',
+        stylers: [{ lightness: 40 }, { saturation: -50 }]
+      }]
+    });
+
+    //autocomplete code
+    $scope.infowindow = new google.maps.InfoWindow();
+    $scope.marker1 = new google.maps.Marker({
+      map: $scope.map,
+      anchorPoint: new google.maps.Point(0, -29)
+    });
+    $scope.input = document.getElementById('search-box');
+
+    $scope.options = {
+      types: ['(cities)'],
+      componentRestrictions: { country: 'us' }
+    };
+    $scope.autoComplete = new google.maps.places.Autocomplete($scope.input, $scope.options);
+    $scope.autoComplete.bindTo('bounds', $scope.map);
+
+    //runs when place is selected from dropdown list
+    $scope.autoComplete.addListener('place_changed', function () {
+      $scope.infowindow.close();
+      $scope.marker1.setVisible(false);
+      $scope.place = $scope.autoComplete.getPlace();
+      if (!$scope.place.geometry) {
+        //  window.alert("Autocomplete's returned place contains no geometry");
+        return;
+      }
+
+      if ($scope.place.geometry.viewport) {
+        $scope.map.fitBounds($scope.place.geometry.viewport);
+        $scope.map.setZoom(8);
+      } else {
+        $scope.map.setCenter($scope.place.geometry.location);
+        $scope.map.setZoom(8);
+      }
+
+      $scope.marker1.setIcon( /** @type {google.maps.Icon} */{
+        url: $scope.place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(35, 35)
+      });
+
+      $scope.marker1.setPosition($scope.place.geometry.location);
+      $scope.marker1.setVisible(true);
+
+      $scope.address = '';
+      if ($scope.place.address_components) {
+        $scope.address = [$scope.place.address_components[0] && $scope.place.address_components[0].short_name || '', $scope.place.address_components[1] && $scope.place.address_components[1].short_name || '', $scope.place.address_components[2] && $scope.place.address_components[2].short_name || ''].join(' ');
+      }
+
+      $scope.infowindow.setContent('<div><strong>' + $scope.place.name + '</strong><br>' + $scope.address);
+      $scope.infowindow.open($scope.map, $scope.marker1);
+    });
+
+    for (var i = 0; i < $scope.location.length; i++) {
+      $scope.latLng = new google.maps.LatLng($scope.location[i].gps[0], $scope.location[i].gps[1]);
+      $scope.marker = new google.maps.Marker({
+        position: $scope.latLng,
+        map: $scope.map,
+        icon: $scope.icon
+      });
+      $scope.marker.info = $scope.location[i];
+      $scope.marker.addListener('click', function () {
+        $scope.station = this.info;
+        $scope.map.setZoom(8);
+        if ($('.info-pane').is(':hidden')) {
+          $('.info-pane').show();
+        }
+        $scope.latLng = new google.maps.LatLng(this.info.gps[0], this.info.gps[1]);
+        $scope.map.setCenter($scope.latLng);
+        $scope.$apply();
+      });
+    }
+  };
+
+  $scope.getChargers();
+});
+'use strict';
+
+angular.module('app').service('mapsSrvc', function ($http) {
+
+  this.getAllLocations = function () {
+    return $http({
+      method: 'GET',
+      url: '/chargers'
+    }).then(function (response) {
+      return response.data;
+    });
+  };
+});
+'use strict';
+
+angular.module('app').directive('animation', function () {
+
+  return {
+    restrict: 'EA',
+    link: function link(scope, elem, attr) {
+      $('.your_car button').on('click', function () {
+        $('.your_car button').removeClass('outline');
+        $(this).addClass('outline');
+      });
+
+      $('.select_performance div').on('click', function () {
+        $('.select_performance div').removeClass('outline');
+        $(this).addClass('outline');
+      });
+
+      $('.pick_a_color li').on('click', function () {
+        var color = $(this).val();
+        if ($('.under_text h4').is(':visible')) {
+          $('.under_text h4').hide();
+          $('.pick_a_color li').removeClass('outline');
+          $('.under_text h4:nth-child(' + color + ')').show();
+          $('.pick_a_color li:nth-child(' + color + ')').addClass('outline');
+        } else if ($('.under_text h4').is(':hidden')) {
+          $('.under_text h4:nth-child(' + color + ')').show();
+        }
+      });
+
+      $('.pick_your_style li').on('click', function () {
+        var type = $(this).val();
+        if ($('.rims h4').is(':visible')) {
+          $('.rims h4').hide();
+          $('.pick_your_style li').removeClass('outline');
+          $('.rims h4:nth-child(' + type + ')').show();
+          $('.pick_your_style li:nth-child(' + type + ')').addClass('outline');
+        } else if ($('.rims h4').is(':hidden')) {
+          $('rims h4:nth-child(' + type + ')').show();
+        }
+      });
+
+      $('.pick_roof_type li').on('click', function () {
+        var roof = $(this).val();
+        $('.roof h4').hide();
+        $('.roof h4:nth-child(' + roof + ')').show();
+        $('.pick_roof_type li').removeClass('outline');
+        $('.pick_roof_type li:nth-child(' + roof + ')').addClass('outline');
+      });
+
+      $('.pick_headliner li').on('click', function () {
+        var headliner = $(this).val();
+        $('.headliner h4').hide();
+        $('.headliner h4:nth-child(' + headliner + ')').show();
+        $('.pick_headliner li').removeClass('outline');
+        $('.pick_headliner li:nth-child(' + headliner + ')').addClass('outline');
+      });
+
+      $('.pick_decor li').on('click', function () {
+        var decor = $(this).val();
+        $('.decor h4').hide();
+        $('.decor h4:nth-child(' + decor + ')').show();
+        $('.pick_decor li').removeClass('outline');
+        $('.pick_decor li:nth-child(' + decor + ')').addClass('outline');
+      });
+
+      $('.pick_seats li').on('click', function () {
+        var seats = $(this).val();
+        $('.seats h4').hide();
+        $('.seats h4:nth-child(' + seats + ')').show();
+        $('.pick_seats li').removeClass('outline');
+        $('.pick_seats li:nth-child(' + seats + ')').addClass('outline');
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('app').directive('carsFooter', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/cars_footer.html'
+  };
+});
+'use strict';
+
+angular.module('app').directive('carContainer', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/car_container.html'
+  };
+});
+'use strict';
+
+angular.module('app').directive('fixedHeader', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/fixed_header.html'
+  };
+});
+'use strict';
+
+angular.module('app').directive('broadHeader', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/header.html'
+  };
+});
+'use strict';
+
+angular.module('app').directive('infoPane', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/infoPane.html',
+    link: function link(scope, element, attr) {
+
+      element.on('click', function (e) {
+
+        if (angular.element(e.target).hasClass('close')) {
+          $('.info-pane').hide();
+        }
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('app').directive('shopFooter', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/shop_footer.html'
+  };
+});
+'use strict';
+
+angular.module('app').directive('shopHeader', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: 'app/component/directives/templates/shop_header.html'
+  };
+});
+'use strict';
+
 angular.module('app').controller('checkoutCtrl', function ($scope, $state, designFact, designSrvc) {
 
   $scope.orderDetails = designFact.get();
@@ -348,308 +651,5 @@ angular.module('app').controller('personalCtrl', function ($scope, $state, desig
     $scope.completeOrder = function () {
         $state.go('complete');
     };
-});
-'use strict';
-
-angular.module('app').directive('animation', function () {
-
-  return {
-    restrict: 'EA',
-    link: function link(scope, elem, attr) {
-      $('.your_car button').on('click', function () {
-        $('.your_car button').removeClass('outline');
-        $(this).addClass('outline');
-      });
-
-      $('.select_performance div').on('click', function () {
-        $('.select_performance div').removeClass('outline');
-        $(this).addClass('outline');
-      });
-
-      $('.pick_a_color li').on('click', function () {
-        var color = $(this).val();
-        if ($('.under_text h4').is(':visible')) {
-          $('.under_text h4').hide();
-          $('.pick_a_color li').removeClass('outline');
-          $('.under_text h4:nth-child(' + color + ')').show();
-          $('.pick_a_color li:nth-child(' + color + ')').addClass('outline');
-        } else if ($('.under_text h4').is(':hidden')) {
-          $('.under_text h4:nth-child(' + color + ')').show();
-        }
-      });
-
-      $('.pick_your_style li').on('click', function () {
-        var type = $(this).val();
-        if ($('.rims h4').is(':visible')) {
-          $('.rims h4').hide();
-          $('.pick_your_style li').removeClass('outline');
-          $('.rims h4:nth-child(' + type + ')').show();
-          $('.pick_your_style li:nth-child(' + type + ')').addClass('outline');
-        } else if ($('.rims h4').is(':hidden')) {
-          $('rims h4:nth-child(' + type + ')').show();
-        }
-      });
-
-      $('.pick_roof_type li').on('click', function () {
-        var roof = $(this).val();
-        $('.roof h4').hide();
-        $('.roof h4:nth-child(' + roof + ')').show();
-        $('.pick_roof_type li').removeClass('outline');
-        $('.pick_roof_type li:nth-child(' + roof + ')').addClass('outline');
-      });
-
-      $('.pick_headliner li').on('click', function () {
-        var headliner = $(this).val();
-        $('.headliner h4').hide();
-        $('.headliner h4:nth-child(' + headliner + ')').show();
-        $('.pick_headliner li').removeClass('outline');
-        $('.pick_headliner li:nth-child(' + headliner + ')').addClass('outline');
-      });
-
-      $('.pick_decor li').on('click', function () {
-        var decor = $(this).val();
-        $('.decor h4').hide();
-        $('.decor h4:nth-child(' + decor + ')').show();
-        $('.pick_decor li').removeClass('outline');
-        $('.pick_decor li:nth-child(' + decor + ')').addClass('outline');
-      });
-
-      $('.pick_seats li').on('click', function () {
-        var seats = $(this).val();
-        $('.seats h4').hide();
-        $('.seats h4:nth-child(' + seats + ')').show();
-        $('.pick_seats li').removeClass('outline');
-        $('.pick_seats li:nth-child(' + seats + ')').addClass('outline');
-      });
-    }
-  };
-});
-'use strict';
-
-angular.module('app').directive('carsFooter', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/cars_footer.html'
-  };
-});
-'use strict';
-
-angular.module('app').directive('carContainer', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/car_container.html'
-  };
-});
-'use strict';
-
-angular.module('app').directive('fixedHeader', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/fixed_header.html'
-  };
-});
-'use strict';
-
-angular.module('app').directive('broadHeader', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/header.html'
-  };
-});
-'use strict';
-
-angular.module('app').directive('infoPane', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/infoPane.html',
-    link: function link(scope, element, attr) {
-
-      element.on('click', function (e) {
-
-        if (angular.element(e.target).hasClass('close')) {
-          $('.info-pane').hide();
-        }
-      });
-    }
-  };
-});
-'use strict';
-
-angular.module('app').directive('shopFooter', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/shop_footer.html'
-  };
-});
-'use strict';
-
-angular.module('app').directive('shopHeader', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: 'app/component/directives/templates/shop_header.html'
-  };
-});
-'use strict';
-
-angular.module('app').controller('loginCtrl', function ($scope, $state, designSrvc, designFact) {
-
-  $scope.valid = true;
-  $scope.login = function () {
-    designSrvc.verifyLogin($scope.user).then(function (response) {
-      designFact.passCust(response);
-      if (response === undefined) {
-        $scope.valid = false;
-      } else {
-        designSrvc.getOrder(response.order_id).then(function (response) {
-
-          $scope.options = {
-            rim_id: response.rim_id,
-            color_id: response.color_id,
-            roof_id: response.roof_id,
-            seat_id: response.seat_id,
-            liner_id: response.liner_id,
-            decor_id: response.decor_id
-          };
-          designFact.pass($scope.options);
-          $state.go('yourcar');
-        });
-      }
-    });
-  };
-});
-'use strict';
-
-angular.module('app').controller('mapsCtrl', function ($scope, mapsSrvc) {
-
-  $scope.getChargers = function () {
-    mapsSrvc.getAllLocations().then(function (response) {
-      for (var i = 0; i < response.length; i++) {
-        response[i].gps = response[i].gps.split(', ');
-      }
-      $scope.location = response;
-      $scope.initMap();
-    });
-  };
-
-  $scope.initMap = function () {
-    $scope.icon = {
-      url: "../../../assets/img/supercharger.png",
-      scaledSize: new google.maps.Size(23, 35)
-    };
-
-    $scope.mapDiv = document.getElementById('map');
-
-    $scope.map = new google.maps.Map($scope.mapDiv, {
-      center: { lat: 39.8333333, lng: -98.585522 },
-      zoom: 5,
-      mapTypeControl: false,
-      streetViewControl: false,
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_CENTER
-      },
-      styles: [{
-        featureType: 'road',
-        stylers: [{ saturation: -80 }]
-      }, {
-        featureType: 'poi',
-        stylers: [{ lightness: 40 }, { saturation: -50 }]
-      }]
-    });
-
-    //autocomplete code
-    $scope.infowindow = new google.maps.InfoWindow();
-    $scope.marker1 = new google.maps.Marker({
-      map: $scope.map,
-      anchorPoint: new google.maps.Point(0, -29)
-    });
-    $scope.input = document.getElementById('search-box');
-
-    $scope.options = {
-      types: ['(cities)'],
-      componentRestrictions: { country: 'us' }
-    };
-    $scope.autoComplete = new google.maps.places.Autocomplete($scope.input, $scope.options);
-    $scope.autoComplete.bindTo('bounds', $scope.map);
-
-    //runs when place is selected from dropdown list
-    $scope.autoComplete.addListener('place_changed', function () {
-      $scope.infowindow.close();
-      $scope.marker1.setVisible(false);
-      $scope.place = $scope.autoComplete.getPlace();
-      if (!$scope.place.geometry) {
-        //  window.alert("Autocomplete's returned place contains no geometry");
-        return;
-      }
-
-      if ($scope.place.geometry.viewport) {
-        $scope.map.fitBounds($scope.place.geometry.viewport);
-        $scope.map.setZoom(8);
-      } else {
-        $scope.map.setCenter($scope.place.geometry.location);
-        $scope.map.setZoom(8);
-      }
-
-      $scope.marker1.setIcon( /** @type {google.maps.Icon} */{
-        url: $scope.place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(35, 35)
-      });
-
-      $scope.marker1.setPosition($scope.place.geometry.location);
-      $scope.marker1.setVisible(true);
-
-      $scope.address = '';
-      if ($scope.place.address_components) {
-        $scope.address = [$scope.place.address_components[0] && $scope.place.address_components[0].short_name || '', $scope.place.address_components[1] && $scope.place.address_components[1].short_name || '', $scope.place.address_components[2] && $scope.place.address_components[2].short_name || ''].join(' ');
-      }
-
-      $scope.infowindow.setContent('<div><strong>' + $scope.place.name + '</strong><br>' + $scope.address);
-      $scope.infowindow.open($scope.map, $scope.marker1);
-    });
-
-    for (var i = 0; i < $scope.location.length; i++) {
-      $scope.latLng = new google.maps.LatLng($scope.location[i].gps[0], $scope.location[i].gps[1]);
-      $scope.marker = new google.maps.Marker({
-        position: $scope.latLng,
-        map: $scope.map,
-        icon: $scope.icon
-      });
-      $scope.marker.info = $scope.location[i];
-      $scope.marker.addListener('click', function () {
-        $scope.station = this.info;
-        $scope.map.setZoom(8);
-        if ($('.info-pane').is(':hidden')) {
-          $('.info-pane').show();
-        }
-        $scope.latLng = new google.maps.LatLng(this.info.gps[0], this.info.gps[1]);
-        $scope.map.setCenter($scope.latLng);
-        $scope.$apply();
-      });
-    }
-  };
-
-  $scope.getChargers();
-});
-'use strict';
-
-angular.module('app').service('mapsSrvc', function ($http) {
-
-  this.getAllLocations = function () {
-    return $http({
-      method: 'GET',
-      url: '/chargers'
-    }).then(function (response) {
-      return response.data;
-    });
-  };
 });
 //# sourceMappingURL=bundle.js.map

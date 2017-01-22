@@ -1,5 +1,5 @@
 const app = require('../index.js');
-const db = app.get('db');
+var db = app.get('db');
 
 module.exports = {
 
